@@ -3,12 +3,14 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 from app.core.config import settings
 
 # Handling SQLite vs Postgres URLs
+# Strip surrounding quotes that may come from environment variable injection
+_db_url = settings.DATABASE_URL.strip('"').strip("'")
 connect_args = {}
-if settings.DATABASE_URL.startswith("sqlite"):
+if _db_url.startswith("sqlite"):
     connect_args = {"check_same_thread": False}
 
 engine = create_engine(
-    settings.DATABASE_URL,
+    _db_url,
     connect_args=connect_args,
     pool_pre_ping=True
 )

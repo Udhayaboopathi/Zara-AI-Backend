@@ -40,4 +40,4 @@ app.include_router(reports.router, prefix=f"{settings.API_V1_STR}/reports", tags
 
 @app.get("/")
 def root():
-    return {"message": "Welcome to Zara AI Backend"}
+    return {"message": "Welcome to Zara AI Backend Testing CI/CD"}
